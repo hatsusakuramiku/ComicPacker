@@ -127,8 +127,6 @@ python build_exe.py
 
 ## 目录结构
 
-- `ComicPackerInput/`: 存放待打包的漫画文件（批量处理模式默认输入目录）
-- `ComicPackerOutput/`: 存放打包后的 CBZ 文件（默认输出目录）
 - `main.py`: 主程序入口
 - `pack_comic.py`: 核心打包功能模块
 - `build_exe.py`: 打包脚本
