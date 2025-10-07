@@ -210,21 +210,7 @@ python manage_version.py major
 
 # 设置特定版本
 python manage_version.py set 1.2.3
-
-# 设置版本类型
-python manage_version.py beta    # 设置为beta版本
-python manage_version.py alpha   # 设置为alpha版本
-python manage_version.py stable  # 设置为stable版本
 ```
-
-### 版本类型说明
-
-- **stable**: 稳定版本，用于生产环境
-- **beta**: 测试版本，功能基本完整但可能有 bug
-- **alpha**: 开发版本，功能不完整，仅用于开发测试
-- **dev**: 开发版本，包含最新的开发代码
-
-## 开发说明
 
 ### 项目结构
 
