@@ -3,13 +3,14 @@
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/yourusername/ComicPacker)
 [![Python](https://img.shields.io/badge/python-3.8+-green.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/status-stable-green.svg)](https://github.com/yourusername/ComicPacker)
 
 ComicPacker 是一个用于将漫画文件打包成 CBZ 格式的 Python 工具。它支持将文件夹中的漫画图片或压缩包格式的漫画转换为标准的 CBZ 格式，并自动添加漫画元数据信息。
 
 ## 功能特点
 
 - 支持将文件夹中的漫画图片打包为 CBZ 格式
-- 支持将 ZIP 格式的压缩包转换为 CBZ 格式
+- 支持将 ZIP, RAR, 7Z 格式的压缩包转换为 CBZ 格式
 - 自动添加漫画元数据（标题、系列名称、卷号等）
 - 支持设置漫画语言、格式、黑白/彩色等属性
 - 批量处理功能，可同时处理多个漫画文件
@@ -19,7 +20,7 @@ ComicPacker 是一个用于将漫画文件打包成 CBZ 格式的 Python 工具�
 
 ## 安装说明
 
-1. 确保已安装 Python 3.6 或更高版本
+1. 确保已安装 Python 3.8 或更高版本
 2. 安装依赖包：
 
 ```bash
@@ -43,7 +44,7 @@ python main.py -i ./漫画.zip
 python main.py -i ./漫画文件夹 -o ./输出目录
 
 # 使用额外参数
-python main.py -i ./漫画文件夹 -e 'series="火影忍者", number="1", title="第一卷"'
+python main.py -i ./漫画文件夹 -e 'series="火影忍者" number="1" title="第一卷"'
 ```
 
 #### 批量处理模式
@@ -56,10 +57,18 @@ python main.py -ip ./输入目录
 python main.py -ip ./输入目录 -o ./输出目录
 
 # 使用额外参数
-python main.py -ip ./输入目录 -e 'series="海贼王", language="ja-JP"'
+python main.py -ip ./输入目录 -e 'series="海贼王" language="ja-JP"'
 ```
 
 ### 方法二：可执行文件运行
+
+首先运行打包脚本：
+
+   ```bash
+   python build_exe.py
+   ```
+
+可执行文件将生成在 `dist` 目录中
 
 ```bash
 # 处理单个文件/文件夹
@@ -88,7 +97,7 @@ python main.py -ip ./输入目录 -e 'series="海贼王", language="ja-JP"'
 - `--language`: 漫画语言代码 (默认: zh-CN)
 - `--delete-original` / `--delo`: 删除原始文件 (默认保留源文件)
 - `--verbose`: 显示详细处理信息
-- `-e`: 额外参数，格式: key1="value1", key2="value2" (例如: series="火影忍者", number="1")
+- `-e`: 额外参数，格式: key1="value1" key2="value2" (例如: series="火影忍者" number="1")
 
 #### 额外参数支持
 
@@ -97,41 +106,27 @@ python main.py -ip ./输入目录 -e 'series="海贼王", language="ja-JP"'
 - `title`: 漫画标题
 - `language`: 漫画语言代码
 
-## 打包成可执行文件
+## 项目结构
 
-### 自动打包
-
-运行打包脚本：
-
-```bash
-python build_exe.py
+```text
+ComicPacker/
+├── .gitignore
+├── build_exe.py
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── ComicPacker.spec
+├── CONTRIBUTING.md
+├── LICENSE
+├── main.py
+├── manage_version.py
+├── pack_comic.py
+├── pyproject.toml
+├── README.md
+├── requirements.txt
+├── SECURITY.md
+├── setup.py
+└── version.py
 ```
-
-这将自动安装 PyInstaller 并生成可执行文件。
-
-### 手动打包
-
-1. 安装 PyInstaller：
-
-   ```bash
-   pip install pyinstaller
-   ```
-
-2. 执行打包命令：
-
-   ```bash
-   pyinstaller --onefile --console --name=ComicPacker main.py
-   ```
-
-3. 可执行文件将生成在 `dist` 目录中
-
-## 目录结构
-
-- `main.py`: 主程序入口
-- `pack_comic.py`: 核心打包功能模块
-- `build_exe.py`: 打包脚本
-- `requirements.txt`: 项目依赖
-- `dist/`: 打包后的可执行文件目录
 
 ## 支持的元数据
 
@@ -148,7 +143,8 @@ python build_exe.py
 
 - 确保输入路径存在且有读取权限
 - 输出目录会自动创建（如果不存在）
-- 支持的图片格式包括：JPG、PNG、GIF 等常见图片格式
+- 支持的图片格式包括：JPG, PNG, GIF, BMP, WEBP, TIFF 等常见图片格式
+- 支持的压缩包格式包括：ZIP, RAR, 7Z
 - 默认语言设置为中文（zh-CN）
 - 默认漫画类型设置为日式漫画（Manga）
 - 默认保留源文件，使用 `--delete-original` 或 `--delo` 参数可删除源文件
@@ -210,15 +206,18 @@ python manage_version.py major
 python manage_version.py set 1.2.3
 ```
 
-### 项目结构
+## 贡献
 
-```markdown
-ComicPacker/
-├── main.py              # 主程序入口
-├── pack_comic.py        # 核心打包功能
-├── version.py           # 版本管理
-├── manage_version.py    # 版本管理脚本
-├── build_exe.py         # 构建脚本
-├── requirements.txt     # 依赖列表
-├── README.md           # 项目说明
-```
+我们欢迎任何形式的贡献！请阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 文件了解如何贡献。
+
+## 行为准则
+
+我们致力于为所有参与者提供一个友好、安全和欢迎的环境。请阅读并遵守我们的 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)。
+
+## 安全
+
+如果您发现了安全漏洞，请通过 [SECURITY.md](SECURITY.md) 中描述的方式告知我们。
+
+## 更新日志
+
+项目的详细变更记录在 [CHANGELOG.md](CHANGELOG.md) 文件中。

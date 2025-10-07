@@ -48,6 +48,6 @@ ComicPacker.exe --help
 
 ## 版本信息
 ComicPacker版本: 1.0.0
-构建时间: 2025-10-07 20:09:54
+构建时间: 2025-10-07 22:10:59
 Python版本: 3.10.11
 PyInstaller版本: 6.14.1
