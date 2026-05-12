@@ -4,8 +4,8 @@
 ComicPacker 版本管理
 """
 
-__version__ = "1.0.0"
-__version_info__ = (1, 0, 0)
+__version__ = "1.0.1"
+__version_info__ = (1, 0, 1)
 __author__ = "ComicPacker Team"
 __email__ = "comicpacker@example.com"
 __description__ = "A tool for packing comic images into CBZ format"

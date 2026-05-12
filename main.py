@@ -58,7 +58,7 @@ def process_single_item(
             }
 
             pack_compressed_comic_to_cbz(
-                compressed_path=item_path,
+                compressed_path=Path(item_path),
                 output_path=Path(output_path) / f"{name}.cbz",
                 **params,
             )
@@ -84,7 +84,7 @@ def process_single_item(
 
             # 将文件夹中的漫画文件打包为CBZ格式
             pack_comic_to_cbz(
-                comic_path=item_path,
+                comic_path=Path(item_path),
                 output_path=Path(output_path) / f"{name}.cbz",
                 **params,
             )

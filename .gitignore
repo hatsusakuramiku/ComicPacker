@@ -99,6 +99,9 @@ celerybeat.pid
 # SageMath parsed files
 *.sage.py
 
+# Claude Code
+.claude/
+
 # Environments
 .env
 .venv
@@ -150,3 +153,4 @@ ComicPacker.exe.manifest
 
 # Test Files
 test*.*
+CLAUDE.md
